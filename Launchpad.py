@@ -57,11 +57,6 @@ def TreeLossChart(df, startYear, endYear, inputCountry):
         plt.plot(newdf2['Year'], newdf2['umd_tree_cover_loss__ha'], label = pycountry.countries.get(alpha_3=i).name)
         
 
-
-    # FIXME: throwing weird error fix later - matplotlib deprecation error (also on line 53, but 
-    # doesn't cause any errors atm)
-
-    # plt.xticks(np.arange(startYear, endYear, 1))
     plt.legend(loc = "best")
     plt.xlabel("Years")
     plt.ylabel("Tree Cover Loss (Hectares)")

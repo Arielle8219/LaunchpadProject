@@ -2,6 +2,7 @@ import pandas as pd
 import pycountry
 from matplotlib import pyplot as plt
 import numpy as np
+from io import StringIO
 
 #TODO: find more data to use: for example, carbon dioxide emissions/tree cover gain
 
@@ -44,6 +45,8 @@ def TreeLossChart(df, startYear, endYear, inputCountry):
     lines = []
     labels = []
     ax = f.add_subplot(1,1,1)
+    fig = plt.figure()
+
     for i in inputCountry: 
         # iterates through the list of user-inputted countries, filters through the dataframe
         # and creates a new dataframe based on user input for start/end year and country
@@ -53,15 +56,22 @@ def TreeLossChart(df, startYear, endYear, inputCountry):
         newdf2 = newdf2.set_index(['Year'])
         newdf2 = newdf2.drop(['gfw_gross_emissions_co2e_all_gases__Mg'], axis=1)
         """
-        # plots each individual column on the same graph, with the label as the counttry name
+        # plots each individual column on the same graph, with the label as the country name
         plt.plot(newdf2['Year'], newdf2['umd_tree_cover_loss__ha'], label = pycountry.countries.get(alpha_3=i).name)
-        
+    
+
 
     plt.legend(loc = "best")
     plt.xlabel("Years")
     plt.ylabel("Tree Cover Loss (Hectares)")
     plt.show()
-    return(f)
+    
+    imgdata = StringIO()
+    fig.savefig(imgdata, format='svg')
+    imgdata.seek(0)
+
+    data = imgdata.getvalue()
+    return data
 
 TreeLossChart(df, startYear, endYear, inputCountry)
 

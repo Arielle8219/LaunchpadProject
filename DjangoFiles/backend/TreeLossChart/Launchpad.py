@@ -6,7 +6,7 @@ from io import StringIO
 
 #TODO: find more data to use: for example, carbon dioxide emissions/tree cover gain
 
-df = pd.read_csv('Tree cover loss in United States compared to other areas/treecover_loss_by_region__ha.csv')
+""" df = pd.read_csv('django-todo-react/backend/backend/Tree cover loss in United States compared to other areas/treecover_loss_by_region__ha.csv')
 
 # FIXME: fuzzy search doesn't quite work as intended - eg: England returns nothing
 print("Enter number of countries: ")
@@ -28,9 +28,8 @@ for i in range(countryCount):
     countryTemp = pycountry.countries.search_fuzzy(countryTemp)[0].alpha_3
     inputCountry.append(countryTemp)
 
-fig_size = (10, 5)
-f = plt.figure(figsize=fig_size)
 
+ """
 
 def TreeLossChart(df, startYear, endYear, inputCountry):
     #TODO: delete this block of code later, kept in case needed for referencing
@@ -41,12 +40,13 @@ def TreeLossChart(df, startYear, endYear, inputCountry):
     # ax refers to the plot
     ax = newdf.plot()
     del inputCountry[0] """
-
+    fig_size = (10, 5)
+    f = plt.figure(figsize=fig_size)
     lines = []
     labels = []
     ax = f.add_subplot(1,1,1)
     fig = plt.figure()
-
+    
     for i in inputCountry: 
         # iterates through the list of user-inputted countries, filters through the dataframe
         # and creates a new dataframe based on user input for start/end year and country
@@ -72,7 +72,9 @@ def TreeLossChart(df, startYear, endYear, inputCountry):
 
     data = imgdata.getvalue()
     return data
+    
+    #return ax
 
-TreeLossChart(df, startYear, endYear, inputCountry)
+#TreeLossChart(df, startYear, endYear, inputCountry)
 
 

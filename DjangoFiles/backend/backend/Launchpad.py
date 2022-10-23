@@ -31,33 +31,34 @@ for i in range(countryCount):
 
 
 
-def TreeLossChart(startYear, endYear, inputCountry):
-    #FileNotFoundError at / [Errno 2] No such file or directory: 'DjangoFiles/backend/backend/treecover_loss_by_region__ha.csv'
+def TreeLossChart(startYear, endYear, inputCountry):    
     df = pd.read_csv('treecover_loss_by_region__ha.csv')
     
+    #instantiates the figure
     fig_size = (10, 5)
     f = plt.figure(figsize=fig_size)
     lines = []
     labels = []
     ax = f.add_subplot(1,1,1)
     fig = plt.figure()
-    
+
+    # iterates through the list of user-inputted countries, filters through the dataframe
+    # and creates a new dataframe based on user input for start/end year and country
     for i in inputCountry: 
-        # iterates through the list of user-inputted countries, filters through the dataframe
-        # and creates a new dataframe based on user input for start/end year and country
         newdf2 = df.loc(axis = 0)[(df['iso'] == i) & (df['Year'] >= startYear) & (df['Year'] <= endYear)]
         
         # plots each individual column on the same graph, with the label as the country name
         plt.plot(newdf2['Year'], newdf2['umd_tree_cover_loss__ha'], label = pycountry.countries.get(alpha_3=i).name)
     
 
-
+    # setting legend and axes
     plt.legend(loc = "best")
     plt.xlabel("Years")
     plt.ylabel("Tree Cover Loss (Hectares)")
     #plt.show()
     plt.tight_layout()
 
+    # preparing graph to be imported as an image and uploaded onto an html file
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)

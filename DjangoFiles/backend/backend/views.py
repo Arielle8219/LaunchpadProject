@@ -10,15 +10,12 @@ import pandas as pd
 
 # Create your views here.
 def home(request):
-    #FIXME: it's not finding the csv file
-    #df = pd.read_csv('treecover_loss_by_region__ha.csv')
-    # TODO: pass in image data to an html template
-    # take in user input? 
-    # also figure out how to convert image data into an actual image
-    # possibly relevant stack overflow: https://stackoverflow.com/questions/47263773/add-image-data-to-html-file
-    countries = ["USA"]
+    
+    # TODO: take in user input for countries, start year, and end year
+    countries = ['USA']
     graphic = TreeLossChart(2004, 2020, countries)
-    #return HttpResponse('<h1>Hello Django!</h1>')
+    
+    # very simple html template
     return render(request, 'homepage.html', {'graphic':graphic})
 
 def about(request):

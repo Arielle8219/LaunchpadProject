@@ -2,11 +2,11 @@ import pandas as pd
 import pycountry
 from matplotlib import pyplot as plt
 import numpy as np
-from io import StringIO
+from io import BytesIO
+import base64
+
 
 #TODO: find more data to use: for example, carbon dioxide emissions/tree cover gain
-
-""" df = pd.read_csv('django-todo-react/backend/backend/Tree cover loss in United States compared to other areas/treecover_loss_by_region__ha.csv')
 
 # FIXME: fuzzy search doesn't quite work as intended - eg: England returns nothing
 print("Enter number of countries: ")
@@ -29,17 +29,12 @@ for i in range(countryCount):
     inputCountry.append(countryTemp)
 
 
- """
 
-def TreeLossChart(df, startYear, endYear, inputCountry):
-    #TODO: delete this block of code later, kept in case needed for referencing
-    """ newdf = df.loc(axis = 0)[(df['iso'] == inputCountry[0]) & (df['Year'] >= startYear) & (df['Year'] <= endYear)]
-    print(newdf)
-    newdf = newdf.set_index(['Year'])
-    newdf = newdf.drop(['gfw_gross_emissions_co2e_all_gases__Mg'], axis=1)
-    # ax refers to the plot
-    ax = newdf.plot()
-    del inputCountry[0] """
+
+def TreeLossChart(startYear, endYear, inputCountry):
+    #FileNotFoundError at / [Errno 2] No such file or directory: 'DjangoFiles/backend/backend/treecover_loss_by_region__ha.csv'
+    df = pd.read_csv('treecover_loss_by_region__ha.csv')
+    
     fig_size = (10, 5)
     f = plt.figure(figsize=fig_size)
     lines = []
@@ -51,11 +46,7 @@ def TreeLossChart(df, startYear, endYear, inputCountry):
         # iterates through the list of user-inputted countries, filters through the dataframe
         # and creates a new dataframe based on user input for start/end year and country
         newdf2 = df.loc(axis = 0)[(df['iso'] == i) & (df['Year'] >= startYear) & (df['Year'] <= endYear)]
-        """
-        Remove this block later, kept in case needed
-        newdf2 = newdf2.set_index(['Year'])
-        newdf2 = newdf2.drop(['gfw_gross_emissions_co2e_all_gases__Mg'], axis=1)
-        """
+        
         # plots each individual column on the same graph, with the label as the country name
         plt.plot(newdf2['Year'], newdf2['umd_tree_cover_loss__ha'], label = pycountry.countries.get(alpha_3=i).name)
     
@@ -64,17 +55,20 @@ def TreeLossChart(df, startYear, endYear, inputCountry):
     plt.legend(loc = "best")
     plt.xlabel("Years")
     plt.ylabel("Tree Cover Loss (Hectares)")
-    plt.show()
-    
-    imgdata = StringIO()
-    fig.savefig(imgdata, format='svg')
-    imgdata.seek(0)
+    #plt.show()
+    plt.tight_layout()
 
-    data = imgdata.getvalue()
-    return data
-    
-    #return ax
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
 
-#TreeLossChart(df, startYear, endYear, inputCountry)
+    graphic = base64.b64encode(image_png)
+    graphic = graphic.decode('utf-8')
+    return graphic
+
+
+TreeLossChart(startYear, endYear, inputCountry)
 
 

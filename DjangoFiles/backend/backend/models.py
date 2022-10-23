@@ -1,5 +1,5 @@
 from django.db import models
-from . import Launchpad
+from ..TreeLossChart import Launchpad
 import pandas as pd
 # Create your models here.
 

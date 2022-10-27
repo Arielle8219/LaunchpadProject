@@ -12,7 +12,7 @@ import pandas as pd
 def home(request):
     
     # TODO: take in user input for countries, start year, and end year
-    countries = ['USA']
+    countries = ['USA', 'DEU', 'GBR']
     graphic = TreeLossChart(2004, 2020, countries)
     
     # very simple html template

@@ -7,7 +7,7 @@ import base64
 
 
 #TODO: find more data to use: for example, carbon dioxide emissions/tree cover gain
-
+"""
 # FIXME: fuzzy search doesn't quite work as intended - eg: England returns nothing
 print("Enter number of countries: ")
 countryCount = int(input())
@@ -29,7 +29,7 @@ for i in range(countryCount):
     inputCountry.append(countryTemp)
 
 
-
+"""
 
 def TreeLossChart(startYear, endYear, inputCountry):    
     df = pd.read_csv('treecover_loss_by_region__ha.csv')
@@ -70,6 +70,6 @@ def TreeLossChart(startYear, endYear, inputCountry):
     return graphic
 
 
-TreeLossChart(startYear, endYear, inputCountry)
+#TreeLossChart(startYear, endYear, inputCountry)
 
 

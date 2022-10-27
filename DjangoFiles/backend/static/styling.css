@@ -1,0 +1,10 @@
+.home {
+    display: flex;
+}
+.graph {
+    flex: 50.00%;
+    padding: 5px;
+}
+.inputs {
+    margin-top: 50px;
+}

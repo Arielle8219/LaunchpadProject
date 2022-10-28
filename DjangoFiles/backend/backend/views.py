@@ -18,7 +18,8 @@ def home(request):
 
       form = InputForm(request.POST)
 
-      # if the user inputs valid parameters:
+      # if the user inputs valid parameters, take them in and initialize variables 
+      # for generating a graph
       if form.is_valid():
         startYear = form.cleaned_data['startYear']
         endYear = form.cleaned_data['endYear']
@@ -51,6 +52,3 @@ def home(request):
     
     # very simple html template with rendered graphic and input form
     return render(request, 'homepage.html', {'graphic':graphic, 'form': form})
-
-def about(request):
-    return HttpResponse('about page')

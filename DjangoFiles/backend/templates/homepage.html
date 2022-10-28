@@ -17,15 +17,12 @@
         </div>
         <div class = "graph"> 
             <div class = "inputs">
-                <form>
-                    <label for="fname">Input Countries</label>
-                    <input type="text" id="fname" name="fname"><br><br>
-                    <label for="lname">Input Start Year</label>
-                    <input type="text" id="lname" name="lname"><br><br>
-                    <label for="lname">Input End Year</label>
-                    <input type="text" id="endYear" name="endYear"><br><br>
-                    <input type="submit" value="Go!">
-                </form> 
+                <form action="" method="post" novalidate>
+                    <!-- TODO: find out what csrf tokens are for -->
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit">
+                    </form>
             </div>
         </div>
     </div>

@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Montserrat;
+    src: url(Montserrat-Light.ttf);
+}
 h1 {
     justify-content: center;
     text-align: center;
@@ -7,7 +11,7 @@ h1 {
 }
 body {
     background-color: rgba(23, 59, 65, 0.957);
-    font-family: Montserrat;
+    font-family: Montserrat, Helvetica;
 }
 .home {
     background-color: white;
@@ -19,8 +23,9 @@ body {
 .container {
     display: flex;
     flex: 50.00%;
-    gap: 100px;
+    gap: 80px;
     margin: 10px;
+    margin-left: 30px;
 }
 .graph {
     border: 5px solid rgba(23, 59, 65, 0.957);
@@ -29,12 +34,12 @@ body {
     padding: 10px;
 }
 .inputs {
-    margin-top: 50px;
+    margin-top: 100px;
     text-align: center;
     border: 5px solid rgba(23, 59, 65, 0.957);
     border-radius: 50px 15px 30px;
     padding: 50px;
-    margin-bottom: 70px;
+    margin-bottom: 100px;
     background-color: rgba(23, 59, 65, 0.957);
     color:rgb(232, 243, 248);
     padding-top: 70px;

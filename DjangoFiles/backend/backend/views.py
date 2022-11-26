@@ -52,3 +52,5 @@ def home(request):
     
     # very simple html template with rendered graphic and input form
     return render(request, 'homepage.html', {'graphic':graphic, 'form': form})
+def about(request):
+    return HttpResponse("hello")

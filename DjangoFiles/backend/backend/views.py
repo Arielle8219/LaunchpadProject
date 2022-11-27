@@ -38,7 +38,7 @@ def home(request):
         # using ISO data - something to think about
         while (countriesRaw.find(',') != -1):
             countrySubstr = countriesRaw[0 : countriesRaw.find(',')]
-            countriesRaw = countriesRaw[countriesRaw.find(',') + 1 :]
+            countriesRaw = countriesRaw[countriesRaw.find(',') + 2 :] 
             countryTemp = pycountry.countries.search_fuzzy(countrySubstr)[0].alpha_3
             countriesList.append(countryTemp)
         countryTemp = pycountry.countries.search_fuzzy(countriesRaw)[0].alpha_3
